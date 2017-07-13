@@ -68,10 +68,26 @@ void loop()
   }
   if (state == 1)
   {
-    for(int i=0; i <= NUM_LEDS; i++) 
+    int speedLED = 15;
+    int whiteLED = random(0,NUM_LEDS);
+    int whiteLED_initial = whiteLED;
+    int whiteLED_diff = 0; 
+    int decrease_speed = random(0, NUM_LEDS);
+    while(speedLED > 0)
     {
-      leds[i] = CRGB::Red;
-    }
+      leds[whiteLED] = CRGB::White;
+      FastLED.show();
+      leds[whiteLED] = CRGB::Black;
+       
+      if(((whiteLED-whiteLED_initial)+NUM_LEDS)%NUM_LEDS > decrease_speed)
+      { 
+        speedLED--;
+        whiteLED_initial = whiteLED; 
+        //decrease_speed = random(0, NUM_LEDS);
+      }
+
+      whiteLED = (whiteLED+speedLED)%NUM_LEDS;
+    }  
   }
   else if (state == 2)
   {
