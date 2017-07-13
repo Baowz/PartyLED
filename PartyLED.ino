@@ -1,28 +1,26 @@
-
 #include "FastLED.h"
 
 FASTLED_USING_NAMESPACE
 
-int Knapp1 = 2;
-int LED1 = 4;
-int Knapp2 = 6;
-int LED2 = 8;
-int Knapp3 = 10;
-int LED3 = 12;
+int Button1 =  2;
+int LED1   =  4;
+int Button2 =  6;
+int LED2   =  8;
+int Button3 = 10;
+int LED3   = 12;
 int reading1;
 int reading2;
 int reading3;
 int state;
 
-#define DATA_PIN    3
-//#define CLK_PIN   4
-#define LED_TYPE    WS2812B
-#define COLOR_ORDER GRB
-#define NUM_LEDS    1014
+#define DATA_PIN            3
+#define LED_TYPE           WS2812B
+#define COLOR_ORDER        GRB
+#define NUM_LEDS           1014
 CRGB leds[NUM_LEDS];
 #define FRAMES_PER_SECOND  120
+#define BRIGHTNESS         250
 
-#define BRIGHTNESS          250
 void setup() 
 {
   delay(3000);
@@ -31,24 +29,22 @@ void setup()
   FastLED.setBrightness(BRIGHTNESS);
     
   Serial.begin(9600);
-  pinMode(Knapp1, INPUT);
-  pinMode(LED1, OUTPUT);
-  pinMode(Knapp2, INPUT);
-  pinMode(LED2, OUTPUT);
-  pinMode(Knapp3, INPUT);
-  pinMode(LED3, OUTPUT);
-  digitalWrite(Knapp1, LOW);
+  pinMode(Button1, INPUT);
+  pinMode(LED1,  OUTPUT);
+  pinMode(Button2, INPUT);
+  pinMode(LED2,  OUTPUT);
+  pinMode(Button3, INPUT);
+  pinMode(LED3,  OUTPUT);
 }
 
 void loop() 
 {
   // put your main code here, to run repeatedly:
-  reading1 = digitalRead(Knapp1);
-  reading2 = digitalRead(Knapp2);
-  reading3 = digitalRead(Knapp3);
-  uint8_t gCurrentPatternNumber = 0; // Index number of which pattern is current
-  uint8_t gHue = 0; // rotating "base color" used by many of the patterns
-  int maks = 5;
+  reading1 = digitalRead(Button1);
+  reading2 = digitalRead(Button2);
+  reading3 = digitalRead(Button3);
+  uint8_t gHue = 0;                  // rotating "base color" used by many of the patterns
+  
   if(reading1 == HIGH)
   {
     digitalWrite(LED1, HIGH);
