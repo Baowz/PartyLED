@@ -68,6 +68,10 @@ void loop()
   }
   if (state == 1)
   {
+    for(int i=0; i <= NUM_LEDS; i++) 
+    {
+      leds[i] = CRGB::Black;
+    }
     int speedLED = 15;
     int whiteLED = random(0,NUM_LEDS);
     int whiteLED_initial = whiteLED;
@@ -83,11 +87,16 @@ void loop()
       { 
         speedLED--;
         whiteLED_initial = whiteLED; 
-        //decrease_speed = random(0, NUM_LEDS);
+        decrease_speed = random(0, (NUM_LEDS/4)+speedLED*20);
       }
 
       whiteLED = (whiteLED+speedLED)%NUM_LEDS;
     }  
+    delay(5000);
+    state = 3;
+    digitalWrite(LED1, LOW);
+    digitalWrite(LED2, LOW);
+    digitalWrite(LED3, HIGH);
   }
   else if (state == 2)
   {
