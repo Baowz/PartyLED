@@ -99,12 +99,6 @@ void loop()
         decrease_speed = random(0, (NUM_LEDS/4)+speedLED*20);
       }
       whiteLED = (whiteLED+speedLED)%NUM_LEDS;
-      Serial.print(r);
-      Serial.print(" ");
-      Serial.print(g);
-      Serial.print(" ");
-      Serial.println(b);
-      
     }  
     for(int j=0; j < 11; j++)
     {
