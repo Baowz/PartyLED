@@ -13,8 +13,8 @@ int reading2;
 int reading3;
 int state;
 
-#define DATA_PIN            3
-#define OPEN_PIN            A0
+#define DATA_PIN           3
+#define OPEN_PIN           A0
 #define LED_TYPE           WS2812B
 #define COLOR_ORDER        GRB
 #define NUM_LEDS           1014
@@ -96,22 +96,22 @@ void loop()
       whiteLED = (whiteLED+speedLED)%NUM_LEDS;
     }  
     for(int j=0; j < 11; j++)
+    {
+      for(int i=0; i <= NUM_LEDS; i++) 
       {
-        for(int i=0; i <= NUM_LEDS; i++) 
-        {
-          leds[i] = CRGB::Red;
-        }
-        FastLED.show();
-          leds[whiteLED] = CRGB::Black;
-        delay(500);
-        for(int k=0; k <= NUM_LEDS; k++) 
-        {
-          leds[k] = CRGB::Black;
-        }
-          leds[whiteLED] = CRGB::White;
-        FastLED.show();
-        delay(500);
+        leds[i] = CRGB::Red;
       }
+      leds[whiteLED] = CRGB::Black;
+      FastLED.show();
+      delay(500);
+      for(int k=0; k <= NUM_LEDS; k++) 
+      {
+        leds[k] = CRGB::Black;
+      }
+      leds[whiteLED] = CRGB::White;
+      FastLED.show();
+      delay(500);
+    }
     delay(5000);
     state = 3;
     digitalWrite(LED1, LOW);
