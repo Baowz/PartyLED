@@ -20,7 +20,7 @@ int state;
 #define NUM_LEDS           1014
 CRGB leds[NUM_LEDS];
 #define FRAMES_PER_SECOND  120
-#define BRIGHTNESS         250
+#define BRIGHTNESS         255
 
 void setup() 
 {
@@ -80,9 +80,16 @@ void loop()
     int whiteLED_initial = whiteLED;
     int whiteLED_diff = 0; 
     int decrease_speed = random(0, NUM_LEDS-speedLED);
+    float counter = 0;
+    
     while(speedLED > 0)
     {
-      leds[whiteLED] = CRGB::White;
+    int r   = (sin(counter/100)+1)*(255/2);
+    int g   = (sin(counter/100 + 3.14*4/3)+1)*(255/2);
+    int b   = (sin(counter/100 + 3.14*2/3)+1)*(255/2);
+    
+      leds[whiteLED] = CRGB(r, g, b);
+      counter += 1.2;
       FastLED.show();
       leds[whiteLED] = CRGB::Black;
       if(((whiteLED-whiteLED_initial)+NUM_LEDS)%NUM_LEDS > decrease_speed)
@@ -92,6 +99,12 @@ void loop()
         decrease_speed = random(0, (NUM_LEDS/4)+speedLED*20);
       }
       whiteLED = (whiteLED+speedLED)%NUM_LEDS;
+      Serial.print(r);
+      Serial.print(" ");
+      Serial.print(g);
+      Serial.print(" ");
+      Serial.println(b);
+      
     }  
     for(int j=0; j < 11; j++)
     {
