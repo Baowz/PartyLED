@@ -1,5 +1,4 @@
 #include "FastLED.h"
-
 FASTLED_USING_NAMESPACE
 
 int Button1 =  2;
@@ -143,4 +142,3 @@ void loop()
   FastLED.show();
   Serial.println(state);
 }
-
