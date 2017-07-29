@@ -1,4 +1,5 @@
 #include "FastLED.h"
+
 FASTLED_USING_NAMESPACE
 
 int Button1 =  2;
@@ -126,7 +127,7 @@ void loop()
   {
     for(int i=0; i <= NUM_LEDS; i++) 
     {
-      leds[i] = CRGB::Blue;
+      leds[i] = CRGB::White;
     }
   }
   else if (state == 3)
