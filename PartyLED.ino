@@ -84,7 +84,7 @@ void loop()
     
     while(speedLED > 0)
     {
-    int r   = (sin(counter/100)+1)*(255/2);
+    int r   = (sin(counter/100)+1)*(255/2); //rotates colors.
     int g   = (sin(counter/100 + 3.14*4/3)+1)*(255/2);
     int b   = (sin(counter/100 + 3.14*2/3)+1)*(255/2);
     
